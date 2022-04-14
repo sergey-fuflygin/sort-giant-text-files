@@ -1,3 +1,4 @@
+using GiantTextFileSorter.Common;
 using GiantTextFileSorter.Generator.NumberGenerator;
 using GiantTextFileSorter.Generator.StringGenerator;
 

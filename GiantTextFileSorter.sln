@@ -4,6 +4,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Generator", "Generator\Gene
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorter", "Sorter\Sorter.csproj", "{3AD93281-8966-4141-A5CA-C1E1499FBC40}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Common", "Common\Common.csproj", "{ED93AAC5-1AFC-4ED4-AEEE-6412EB00E8A4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +20,9 @@ Global
 		{3AD93281-8966-4141-A5CA-C1E1499FBC40}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3AD93281-8966-4141-A5CA-C1E1499FBC40}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3AD93281-8966-4141-A5CA-C1E1499FBC40}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ED93AAC5-1AFC-4ED4-AEEE-6412EB00E8A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ED93AAC5-1AFC-4ED4-AEEE-6412EB00E8A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ED93AAC5-1AFC-4ED4-AEEE-6412EB00E8A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ED93AAC5-1AFC-4ED4-AEEE-6412EB00E8A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

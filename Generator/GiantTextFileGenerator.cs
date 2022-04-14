@@ -46,8 +46,6 @@ namespace GiantTextFileSorter.Generator
                 
                 _streamWriter.WriteLine(fileLine);
             }
-            
-            _streamWriter.Flush();
         }
     }
 }
