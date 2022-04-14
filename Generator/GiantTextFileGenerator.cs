@@ -4,6 +4,7 @@ using System.IO;
 using System.Text;
 using GiantTextFileSorter.Generator.NumberGenerator;
 using GiantTextFileSorter.Generator.Repositories;
+using GiantTextFileSorter.Generator.StringGenerator;
 
 namespace GiantTextFileSorter.Generator
 {
@@ -11,7 +12,6 @@ namespace GiantTextFileSorter.Generator
     {
         private const int PercentOfDuplicates = 10;
 
-        private Queue<string> DuplicatesDictionary => new Queue<string>();
 
         private readonly StreamWriter _streamWriter;
 
@@ -26,7 +26,7 @@ namespace GiantTextFileSorter.Generator
             _fileSize = fileSize;
             
             _streamWriter = new StreamWriter(fileName);
-            _fileLineBuilder = new FileLineBuilder(new PositiveNumberGenerator(fileSize), new StringGenerator.StringGenerator(new WordsRepository(new PositiveNumberGenerator())));
+            _fileLineBuilder = new FileLineBuilder(new PositiveNumberGenerator(fileSize), new CachedStringGeneratorDecorator(new StringGenerator.StringGenerator(new WordsRepository(new PositiveNumberGenerator())), 10));
         }
 
         public void Generate()

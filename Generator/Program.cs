@@ -1,12 +1,10 @@
-﻿using System;
-
-namespace GiantTextFileSorter.Generator
+﻿namespace GiantTextFileSorter.Generator
 {
     internal static class Program
     {
-        private static void Main(string[] args)
+        private static void Main(string[] args) 
         {
-            var t = new GiantTextFileGenerator("random.txt", 1024 * 1024 * 500);
+            var t = new GiantTextFileGenerator("random.txt", 1024 * 1024 * 5); // 5 MB
             t.Generate();
         }
     }
