@@ -6,7 +6,8 @@ namespace GiantTextFileSorter.Generator
     {
         private static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var t = new GiantTextFileGenerator("random.txt", 1000);
+            t.Generate();
         }
     }
 }
