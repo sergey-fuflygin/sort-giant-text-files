@@ -7,4 +7,10 @@
         <AssemblyName>GiantTextFileSorter.Generator</AssemblyName>
     </PropertyGroup>
 
+    <ItemGroup>
+      <None Update="english_words.txt">
+        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      </None>
+    </ItemGroup>
+
 </Project>

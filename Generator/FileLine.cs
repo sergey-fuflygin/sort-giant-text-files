@@ -1,3 +1,5 @@
+using System;
+
 namespace GiantTextFileSorter.Generator
 {
     public struct FileLine
@@ -11,6 +13,6 @@ namespace GiantTextFileSorter.Generator
             String = @string;
         }
 
-        public override string ToString() => $"{Number}. {String}";
+        public override string ToString() => $"{Number.ToString()}. {String}";
     }
 }

@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Text;
+using GiantTextFileSorter.Generator.NumberGenerator;
+using GiantTextFileSorter.Generator.Repositories;
 
 namespace GiantTextFileSorter.Generator
 {
@@ -24,7 +26,7 @@ namespace GiantTextFileSorter.Generator
             _fileSize = fileSize;
             
             _streamWriter = new StreamWriter(fileName);
-            _fileLineBuilder = new FileLineBuilder(new PositiveNumberGenerator(fileSize), new StringGenerator());
+            _fileLineBuilder = new FileLineBuilder(new PositiveNumberGenerator(fileSize), new StringGenerator.StringGenerator(new WordsRepository(new PositiveNumberGenerator())));
         }
 
         public void Generate()
