@@ -22,16 +22,26 @@ namespace GiantTextFileSorter.Sorter
         
         public async Task SortAsync()
         {
-            var lines = await ReadFileLines();
+            var lines = await ReadFileLinesAsync();
 
             await using var streamWriter = new StreamWriter(_destinationFileName);
-            foreach (var line in lines.OrderBy(l => l, new FileLineComparer()))
+            
+            lines.Sort(new FileLineComparer());
+            
+            // lines.Sort((l1, l2) => string.Compare(l1.String, l2.String, StringComparison.Ordinal));
+            
+            foreach (var line in lines)
             {
                 await streamWriter.WriteLineAsync(line.ToString());
-            }            
+            }    
+            
+            // foreach (var line in lines.OrderBy(l => l.String).ThenBy(l => l.Number))
+            // {
+            //     await streamWriter.WriteLineAsync(line.ToString());
+            // }            
         }
 
-        private async Task<List<FileLine>> ReadFileLines()
+        private async Task<List<FileLine>> ReadFileLinesAsync()
         {
             using var streamReader = new StreamReader(_sourceFileName);
             var lines = new List<FileLine>();
