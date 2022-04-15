@@ -1,5 +1,3 @@
-using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Text;
 using GiantTextFileSorter.Generator.NumberGenerator;
@@ -10,12 +8,7 @@ namespace GiantTextFileSorter.Generator
 {
     public class GiantTextFileGenerator
     {
-        private const int PercentOfDuplicates = 10;
-
-
         private readonly StreamWriter _streamWriter;
-
-        private Random Random => new Random();
 
         private readonly FileLineBuilder _fileLineBuilder;
 

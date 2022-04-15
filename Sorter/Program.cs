@@ -1,20 +1,18 @@
 ﻿using System;
 using System.Diagnostics;
-using System.Threading.Tasks;
-using System.Timers;
 
 namespace GiantTextFileSorter.Sorter
 {
     internal static class Program
     {
-        private static async Task Main(string[] args)
+        private static void Main(string[] args)
         {
             var watch = new Stopwatch();
             
             watch.Start();
             
             var giantTextFileSorter = new GiantTextFileSorter("random.txt", "sorted.txt");
-            await giantTextFileSorter.SortAsync();
+            giantTextFileSorter.Sort();
             
             watch.Stop();
             

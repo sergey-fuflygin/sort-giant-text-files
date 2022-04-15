@@ -1,9 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
-using System.Linq;
-using System.Threading;
-using System.Threading.Tasks;
+using System.Text;
 using GiantTextFileSorter.Common;
 using GiantTextFileSorter.Sorter.Comparers;
 
@@ -20,48 +19,56 @@ namespace GiantTextFileSorter.Sorter
             _destinationFileName = destinationFileName;
         }
         
-        public async Task SortAsync()
+        public void Sort()
         {
-            var lines = await ReadFileLinesAsync();
-
-            await using var streamWriter = new StreamWriter(_destinationFileName);
+            var watch = new Stopwatch();
+            watch.Start();
+            
+            Console.WriteLine($"Loading text file...");
+            
+            var lines = ReadFileLines();
+            
+            Console.WriteLine($"File loaded, took {watch.Elapsed}");
+            watch.Restart();
+            
+            Console.WriteLine($"Sorting...");
             
             lines.Sort(new FileLineComparer());
             
-            // lines.Sort((l1, l2) => string.Compare(l1.String, l2.String, StringComparison.Ordinal));
-            
+            Console.WriteLine($"Sorted, took {watch.Elapsed}");
+            watch.Restart();
+
+            Console.WriteLine($"Saving result to file...");
+
+            var streamWriter = new StreamWriter(_destinationFileName);
             foreach (var line in lines)
             {
-                await streamWriter.WriteLineAsync(line.ToString());
-            }    
+                streamWriter.WriteLine(line.ToString());
+            }
             
-            // foreach (var line in lines.OrderBy(l => l.String).ThenBy(l => l.Number))
-            // {
-            //     await streamWriter.WriteLineAsync(line.ToString());
-            // }            
+            Console.WriteLine($"Saved file, took {watch.Elapsed}");
+            watch.Stop();
         }
 
-        private async Task<List<FileLine>> ReadFileLinesAsync()
+        private List<FileLine> ReadFileLines()
         {
-            using var streamReader = new StreamReader(_sourceFileName);
-            var lines = new List<FileLine>();
+            const int bufferSize = 1048576;
             
-            while (!streamReader.EndOfStream)
+            using var fileStream = File.OpenRead(_sourceFileName);
+            using var streamReader = new StreamReader(fileStream, Encoding.UTF8, true, bufferSize);
+            
+            ReadOnlySpan<char> line;
+            var lines = new List<FileLine>();
+
+            while ((line = streamReader.ReadLine().AsSpan()) != null)
             {
-                var strLine = await streamReader.ReadLineAsync();
-                if (strLine == null) continue;
+                var dotPosition = line.IndexOf(". ");
 
-                var lineParts = strLine.Split(". ");
-                var number = int.Parse(lineParts[0]);
-                var @string = lineParts[1];
-
-                var fileLine = new FileLine()
+                lines.Add(new FileLine
                 {
-                    Number = number,
-                    String = @string
-                };
-
-                lines.Add(fileLine);
+                    Number = int.Parse(line[..dotPosition]),
+                    String = line[(dotPosition + 2)..].ToString()
+                });
             }
 
             return lines;

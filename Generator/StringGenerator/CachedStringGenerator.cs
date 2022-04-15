@@ -28,7 +28,7 @@ namespace GiantTextFileSorter.Generator.StringGenerator
 
             if (_stringsCount % (100 / _percentOfDuplicates) == 0)
             {
-                return _duplicates.Dequeue();
+                return _duplicates.Dequeue() ?? @string;
             }
 
             if (_duplicates.Count < CacheSize)
