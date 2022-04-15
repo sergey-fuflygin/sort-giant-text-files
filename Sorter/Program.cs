@@ -8,15 +8,13 @@ namespace GiantTextFileSorter.Sorter
         private static void Main(string[] args)
         {
             var watch = new Stopwatch();
-            
             watch.Start();
             
             var giantTextFileSorter = new GiantTextFileSorter("random.txt", "sorted.txt");
             giantTextFileSorter.Sort();
             
             watch.Stop();
-            
-            Console.WriteLine($"Sort done, took {TimeSpan.FromMilliseconds(watch.ElapsedMilliseconds)}");
+            Console.WriteLine($"Sorting completed, took {watch.Elapsed}");
         }
     }
 }
