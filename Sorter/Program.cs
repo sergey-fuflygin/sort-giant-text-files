@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using System.IO;
+using GiantTextFileSorter.Sorter.Extensions;
 
 namespace GiantTextFileSorter.Sorter
 {
@@ -10,11 +12,16 @@ namespace GiantTextFileSorter.Sorter
             var watch = new Stopwatch();
             watch.Start();
             
-            var giantTextFileSorter = new GiantTextFileSorter("random.txt", "sorted.txt");
-            giantTextFileSorter.Sort();
-            
+            var textFileSorter = new GiantTextFileSorter("random.txt", "sorted.txt");
+            textFileSorter.Sort();
+
             watch.Stop();
-            Console.WriteLine($"Sorting completed, took {watch.Elapsed}");
+            
+            var currentProcess = Process.GetCurrentProcess();
+            var totalBytesOfMemoryUsed = currentProcess.WorkingSet64;
+            
+            Console.WriteLine($"{new FileInfo("random.txt").Length.ToBytes()} file sorted in {watch.Elapsed}. " +
+                              $"{totalBytesOfMemoryUsed.ToBytes()} of memory used.");
         }
     }
 }

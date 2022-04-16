@@ -15,6 +15,6 @@ namespace GiantTextFileSorter.Generator.NumberGenerator
 
         public int Generate() => Generate(MinValue, _maxValue);
 
-        public int Generate(int minValue, int maxValue) => Random.Next(MinValue, maxValue);
+        public int Generate(int minValue, int maxValue) => Random.Next(MinValue, maxValue + 1);
     }
 }

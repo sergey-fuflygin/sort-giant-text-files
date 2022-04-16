@@ -24,21 +24,21 @@ namespace GiantTextFileSorter.Sorter
             var watch = new Stopwatch();
             watch.Start();
             
-            Console.WriteLine($"Loading text file...");
+            Console.WriteLine($"Reading text file...");
             
             var lines = ReadFileLines();
-            
-            Console.WriteLine($"File loaded, took {watch.Elapsed}");
+
+            Console.WriteLine($"File read in {watch.Elapsed}");
             watch.Restart();
             
             Console.WriteLine($"Sorting...");
             
             lines.Sort(new FileLineComparer());
             
-            Console.WriteLine($"Sorted, took {watch.Elapsed}");
+            Console.WriteLine($"Sorted in {watch.Elapsed}");
             watch.Restart();
 
-            Console.WriteLine($"Saving result to file...");
+            Console.WriteLine($"Saving sorted file...");
 
             var streamWriter = new StreamWriter(_destinationFileName);
             foreach (var line in lines)
@@ -46,7 +46,7 @@ namespace GiantTextFileSorter.Sorter
                 streamWriter.WriteLine(line.ToString());
             }
             
-            Console.WriteLine($"Saved file, took {watch.Elapsed}");
+            Console.WriteLine($"Saved file in {watch.Elapsed}");
             watch.Stop();
         }
 
@@ -70,7 +70,7 @@ namespace GiantTextFileSorter.Sorter
                     String = line[(dotPosition + 2)..].ToString()
                 });
             }
-
+            
             return lines;
         }
     }
