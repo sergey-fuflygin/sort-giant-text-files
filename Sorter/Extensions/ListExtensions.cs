@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace GiantTextFileSorter.Sorter.Extensions
 {
-    public static class IReadOnlyListExtensions
+    public static class ReadOnlyListExtensions
     {
         public static IReadOnlyList<IReadOnlyList<T>> ChunkBy<T>(this IReadOnlyList<T> source, int chunkSize) 
         {

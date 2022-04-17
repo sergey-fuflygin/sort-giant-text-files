@@ -13,22 +13,14 @@ namespace GiantTextFileSorter.Sorter
             var watch = new Stopwatch();
             watch.Start();
             
-            // var textFileSorter = new GiantTextFileSorter("random.txt", "sorted.txt");
-            // textFileSorter.Sort();
-            
             var unsortedFile = File.OpenRead("random.txt");
             var targetFile = File.OpenWrite("sorted.txt");
-            var sorter = new ExternalMergeSorter();
+            var sorter = new GiantTextFileSorter();
             
             await sorter.Sort(unsortedFile, targetFile);
             
             watch.Stop();
-            
-            var currentProcess = Process.GetCurrentProcess();
-            var totalBytesOfMemoryUsed = currentProcess.WorkingSet64;
-            
-            Console.WriteLine($"{new FileInfo("random.txt").Length.ToBytes()} file sorted in {watch.Elapsed}. " +
-                              $"{totalBytesOfMemoryUsed.ToBytes()} of memory used.");
+            Console.WriteLine($"{new FileInfo("random.txt").Length.ToBytes()} file sorted in {watch.Elapsed}.");
         }
     }
 }
