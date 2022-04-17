@@ -11,7 +11,7 @@ namespace GiantTextFileSorter.Generator
             
             watch.Start();
             
-            var textFileGenerator = new GiantTextFileGenerator("random.txt", 1024 * 1024 * 1024); // 1 GB
+            var textFileGenerator = new GiantTextFileGenerator("random.txt", (long)1024 * 1024 * 1024 * 2); // 1 GB
             textFileGenerator.Generate();
             
             watch.Stop();

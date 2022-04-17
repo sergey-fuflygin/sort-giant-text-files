@@ -8,7 +8,7 @@ namespace GiantTextFileSorter.Generator.NumberGenerator
         private const int MinValue = 1;
         private readonly int _maxValue;
 
-        public PositiveNumberGenerator(int maxValue = int.MaxValue)
+        public PositiveNumberGenerator(int maxValue = int.MaxValue - 1)
         {
             _maxValue = maxValue;
         }

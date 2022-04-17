@@ -12,14 +12,14 @@ namespace GiantTextFileSorter.Generator
 
         private readonly FileLineBuilder _fileLineBuilder;
 
-        private readonly int _fileSize;
+        private readonly long _fileSize;
         
-        public GiantTextFileGenerator(string fileName, int fileSize)
+        public GiantTextFileGenerator(string fileName, long fileSize)
         {
             _fileSize = fileSize;
             
             _streamWriter = new StreamWriter(fileName);
-            _fileLineBuilder = new FileLineBuilder(new PositiveNumberGenerator(fileSize), new CachedStringGeneratorDecorator(new StringGenerator.StringGenerator(new WordsRepository(new PositiveNumberGenerator())), 10));
+            _fileLineBuilder = new FileLineBuilder(new PositiveNumberGenerator(), new CachedStringGeneratorDecorator(new StringGenerator.StringGenerator(new WordsRepository(new PositiveNumberGenerator())), 10));
         }
 
         public void Generate()

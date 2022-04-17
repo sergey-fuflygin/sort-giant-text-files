@@ -5,6 +5,7 @@
         <TargetFramework>netcoreapp3.1</TargetFramework>
         <AssemblyName>GiantTextFileSorter.Sorter</AssemblyName>
         <RootNamespace>GiantTextFileSorter.Sorter</RootNamespace>
+        <LangVersion>9</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
