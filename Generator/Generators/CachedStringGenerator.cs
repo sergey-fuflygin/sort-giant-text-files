@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace GiantTextFileSorter.Generator.StringGenerator
+namespace GiantTextFileSorter.Generator.Generators
 {
     /// <summary>
     /// Add duplicates functionality to StringGenerator class

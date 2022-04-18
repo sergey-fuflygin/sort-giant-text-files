@@ -1,6 +1,6 @@
 using System;
 
-namespace GiantTextFileSorter.Sorter.Extensions
+namespace GiantTextFileSorter.Common.Extensions
 {
     public static class StringExtensions
     {

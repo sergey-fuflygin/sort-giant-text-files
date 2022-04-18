@@ -1,6 +1,6 @@
 using System;
 
-namespace GiantTextFileSorter.Generator.NumberGenerator
+namespace GiantTextFileSorter.Generator.Generators
 {
     public class PositiveNumberGenerator : IPositiveNumberGenerator
     {

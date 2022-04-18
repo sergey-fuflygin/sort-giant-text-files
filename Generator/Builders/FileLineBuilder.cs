@@ -1,8 +1,7 @@
-using GiantTextFileSorter.Common;
-using GiantTextFileSorter.Generator.NumberGenerator;
-using GiantTextFileSorter.Generator.StringGenerator;
+using GiantTextFileSorter.Common.Models;
+using GiantTextFileSorter.Generator.Generators;
 
-namespace GiantTextFileSorter.Generator
+namespace GiantTextFileSorter.Generator.Builders
 {
     public class FileLineBuilder
     {

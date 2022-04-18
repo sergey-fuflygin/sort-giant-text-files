@@ -1,17 +1,16 @@
 using System.IO;
 using System.Text;
-using GiantTextFileSorter.Generator.NumberGenerator;
+using GiantTextFileSorter.Generator.Builders;
+using GiantTextFileSorter.Generator.Generators;
 using GiantTextFileSorter.Generator.Repositories;
-using GiantTextFileSorter.Generator.StringGenerator;
 
 namespace GiantTextFileSorter.Generator
 {
     public class GiantTextFileGenerator
     {
+        private const int PercentOfDuplicates = 10;
         private readonly StreamWriter _streamWriter;
-
         private readonly FileLineBuilder _fileLineBuilder;
-
         private readonly long _fileSize;
         
         public GiantTextFileGenerator(string fileName, long fileSize)
@@ -19,7 +18,7 @@ namespace GiantTextFileSorter.Generator
             _fileSize = fileSize;
             
             _streamWriter = new StreamWriter(fileName);
-            _fileLineBuilder = new FileLineBuilder(new PositiveNumberGenerator(), new CachedStringGeneratorDecorator(new StringGenerator.StringGenerator(new WordsRepository(new PositiveNumberGenerator())), 10));
+            _fileLineBuilder = new FileLineBuilder(new PositiveNumberGenerator(), new CachedStringGeneratorDecorator(new StringGenerator(new WordsRepository(new PositiveNumberGenerator())), PercentOfDuplicates));
         }
 
         public void Generate()

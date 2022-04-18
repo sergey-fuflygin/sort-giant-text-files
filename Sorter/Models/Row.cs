@@ -1,4 +1,4 @@
-using GiantTextFileSorter.Common;
+using GiantTextFileSorter.Common.Models;
 
 namespace GiantTextFileSorter.Sorter.Models
 {

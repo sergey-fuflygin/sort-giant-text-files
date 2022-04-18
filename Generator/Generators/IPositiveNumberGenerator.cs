@@ -1,4 +1,4 @@
-namespace GiantTextFileSorter.Generator.NumberGenerator
+namespace GiantTextFileSorter.Generator.Generators
 {
     public interface IPositiveNumberGenerator
     {

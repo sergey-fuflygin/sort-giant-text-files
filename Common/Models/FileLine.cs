@@ -1,4 +1,4 @@
-namespace GiantTextFileSorter.Common
+namespace GiantTextFileSorter.Common.Models
 {
     public struct FileLine
     {

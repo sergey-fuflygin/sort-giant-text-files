@@ -1,9 +1,8 @@
 using System.Text;
 using GiantTextFileSorter.Generator.Extensions;
-using GiantTextFileSorter.Generator.NumberGenerator;
 using GiantTextFileSorter.Generator.Repositories;
 
-namespace GiantTextFileSorter.Generator.StringGenerator
+namespace GiantTextFileSorter.Generator.Generators
 {
     /// <summary>
     /// Generates random string from English words dictionary.

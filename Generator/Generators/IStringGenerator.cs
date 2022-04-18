@@ -1,4 +1,4 @@
-namespace GiantTextFileSorter.Generator.StringGenerator
+namespace GiantTextFileSorter.Generator.Generators
 {
     public interface IStringGenerator
     {

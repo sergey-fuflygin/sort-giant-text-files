@@ -3,7 +3,7 @@ using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
 using CommandLine;
-using GiantTextFileSorter.Sorter.Extensions;
+using GiantTextFileSorter.Common.Extensions;
 using GiantTextFileSorter.Sorter.Models;
 
 namespace GiantTextFileSorter.Sorter

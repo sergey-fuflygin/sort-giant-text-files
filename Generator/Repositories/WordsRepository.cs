@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 using System.IO;
-using GiantTextFileSorter.Generator.NumberGenerator;
+using GiantTextFileSorter.Generator.Generators;
 
 namespace GiantTextFileSorter.Generator.Repositories
 {
