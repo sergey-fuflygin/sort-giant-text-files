@@ -22,6 +22,8 @@ namespace GiantTextFileSorter.Generator
 
             var fileName = opts.FileName.Trim();
             
+            Console.WriteLine($"Generating...");
+
             var textFileGenerator = new GiantTextFileGenerator(fileName, opts.FileSize);
             textFileGenerator.Generate();
 
