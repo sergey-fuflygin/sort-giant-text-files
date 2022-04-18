@@ -1,11 +1,13 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using GiantTextFileSorter.Common;
 using GiantTextFileSorter.Sorter.Comparers;
 using GiantTextFileSorter.Sorter.Extensions;
+using GiantTextFileSorter.Sorter.Models;
 
 namespace GiantTextFileSorter.Sorter
 {
@@ -23,16 +25,39 @@ namespace GiantTextFileSorter.Sorter
 
         public async Task Sort(Stream source, Stream target)
         {
+            // 1. Split
+            var watch = new Stopwatch();
+            watch.Start();
+            
+            Console.WriteLine($"Splitting text file...");
+            
             var files = SplitFile(source);
+            
+            Console.WriteLine($"Split to {files.Count} file(s) in {watch.Elapsed:m\\:ss}.");
+            watch.Restart();
 
             if (files.Count == 1)
             {
+                Console.WriteLine($"Sorting file...");
+
                 SortFile(File.OpenRead(files.First()), target);
                 File.Delete(files.First());
+
+                Console.WriteLine($"Sorted in {watch.Elapsed:m\\:ss}.");
+
                 return;
             }
             
+            // 2. Sort
+            Console.WriteLine($"Sorting files...");
+            
             var sortedFiles = SortFiles(files);
+            
+            Console.WriteLine($"Sorted in {watch.Elapsed:m\\:ss}");
+            watch.Restart();
+            
+            // 3. Merge
+            Console.WriteLine($"Merging sorted files into single one...");
             
             var done = false;
             var result = sortedFiles.Count / FilesPerRun;
@@ -48,6 +73,8 @@ namespace GiantTextFileSorter.Sorter
             }
             
             await MergeFiles(sortedFiles, target);
+            
+            Console.WriteLine($"Merged files in {watch.Elapsed:m\\:ss}.");
         }
 
         private IReadOnlyCollection<string> SplitFile(Stream sourceStream)

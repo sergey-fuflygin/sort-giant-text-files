@@ -2,7 +2,9 @@
 using System.Diagnostics;
 using System.IO;
 using System.Threading.Tasks;
+using CommandLine;
 using GiantTextFileSorter.Sorter.Extensions;
+using GiantTextFileSorter.Sorter.Models;
 
 namespace GiantTextFileSorter.Sorter
 {
@@ -10,17 +12,25 @@ namespace GiantTextFileSorter.Sorter
     {
         private static async Task Main(string[] args)
         {
+            await Parser.Default.ParseArguments<CommandLineOptions>(args)
+                .WithParsedAsync(ExecuteSorter);
+        }
+
+        private static async Task ExecuteSorter(CommandLineOptions opts)
+        {
             var watch = new Stopwatch();
             watch.Start();
+
+            var sourceFileName = opts.SourceFile.Trim();
+            var targetFileName = opts.TargetFile.Trim();
             
-            var unsortedFile = File.OpenRead("random.txt");
-            var targetFile = File.OpenWrite("sorted.txt");
+            var unsortedFile = File.OpenRead(sourceFileName);
+            var targetFile = File.OpenWrite(targetFileName);
             var sorter = new GiantTextFileSorter();
             
             await sorter.Sort(unsortedFile, targetFile);
             
-            watch.Stop();
-            Console.WriteLine($"{new FileInfo("random.txt").Length.ToBytes()} file sorted in {watch.Elapsed}.");
+            Console.WriteLine($"{new FileInfo(sourceFileName).Length.ToBytes()} file sorted in {watch.Elapsed:m\\:ss}.");
         }
     }
 }
